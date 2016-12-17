@@ -8,6 +8,9 @@ module.exports = app => {
     .get(mainCtrl.testRoute);
 
   app.route('/character/:name')
-    .get(mainCtrl.getCharacter);
+    .get(mainCtrl.getOneCharacter);
+
+  app.route('/characters')
+    .get(mainCtrl.getCharacters);
 
 };
