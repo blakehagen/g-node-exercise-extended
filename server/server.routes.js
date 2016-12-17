@@ -1,16 +1,17 @@
 'use strict';
 
-const mainCtrl = require('./server.controller.js');
+const characterCtrl = require('./characters.controller.js');
+const planetCtrl    = require('./planetResidents.controller');
 
 module.exports = app => {
 
-  app.route('/api/v1/test')
-    .get(mainCtrl.testRoute);
-
   app.route('/character/:name')
-    .get(mainCtrl.getOneCharacter);
+    .get(characterCtrl.getOneCharacter);
 
   app.route('/characters')
-    .get(mainCtrl.getCharacters);
+    .get(characterCtrl.getCharacters);
+
+  app.route('/planetResidents')
+    .get(planetCtrl.getPlanetResidents);
 
 };

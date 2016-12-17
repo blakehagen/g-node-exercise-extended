@@ -7,10 +7,6 @@ const brequest = BPromise.promisify(require('request'));
 
 module.exports = {
 
-  testRoute: (req, res) => {
-    return res.render('test')
-  },
-
   getOneCharacter: (req, res) => {
 
     let name = req.params.name;
@@ -83,9 +79,9 @@ module.exports = {
           character.mass   = numeral(character.mass)._value;
         });
 
-        let query = req.query.sort;
+        let sortQuery = req.query.sort;
 
-        switch (query) {
+        switch (sortQuery) {
           case 'name':
             return res.status(200).json(_.sortBy(characters, 'name'));
             break;
