@@ -3,6 +3,7 @@
 const characterCtrl = require('./controllers/characters.controller.js');
 const planetCtrl    = require('./controllers/planetResidents.controller.js');
 const vehicleCtrl   = require('./controllers/vehicles.controller.js');
+const filmCtrl      = require('./controllers/films.controller');
 
 
 module.exports = app => {
@@ -18,5 +19,8 @@ module.exports = app => {
 
   app.route('/bestVehicles')
     .get(vehicleCtrl.getBestVehicles);
+
+  app.route('/heaviestFilms')
+    .get(filmCtrl.getHeaviestFilms);
 
 };
