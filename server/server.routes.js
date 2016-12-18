@@ -1,8 +1,8 @@
 'use strict';
 
-const characterCtrl = require('./characters.controller.js');
-const planetCtrl    = require('./planetResidents.controller');
-const vehicleCtrl   = require('./vehicles.controller');
+const characterCtrl = require('./controllers/characters.controller.js');
+const planetCtrl    = require('./controllers/planetResidents.controller.js');
+const vehicleCtrl   = require('./controllers/vehicles.controller.js');
 
 
 module.exports = app => {
