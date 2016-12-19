@@ -61,6 +61,7 @@ function isValidWalk(walk) {
 // Implement the range function: range([start], stop, [step])
 
 function range(start = 0, end, step = 1) {
+
   if (start > end) {
     return [];
   }
@@ -69,38 +70,23 @@ function range(start = 0, end, step = 1) {
     return [];
   }
 
-  if (start && !end && (step === 1 || !step)) {
-    end       = start;
-    start     = 0;
-    let range = [];
-    for (let i = start; i < end; i++) {
-      range.push(i);
-    }
-    return range;
-  }
+  let range = [];
 
   if (step === 0) {
-    let range = [];
     for (let i = start; i < end; i++) {
       range.push(start);
     }
     return range;
   }
 
-
-  let range = [start];
-
-  function next(previousNum) {
-    let nextNum = previousNum + step;
-    if (nextNum < end) {
-      range.push(nextNum);
-      next(nextNum);
-    } else {
-      return false;
-    }
+  if (!end) {
+    end   = start;
+    start = 0;
   }
 
-  next(start);
+  for (let i = start; i < end; i += step) {
+    range.push(i);
+  }
 
   return range;
 }
