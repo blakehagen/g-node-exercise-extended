@@ -134,7 +134,6 @@ function christmasTree(height) {
     for (let i = 0; i < getNthOdd(row); i++) {
       branch.push('*');
     }
-
     return branch.join('');
   }
 
@@ -168,7 +167,7 @@ function christmasTree(height) {
   }
 
   console.log(newTree.join(''));
-  return treeArr.join('');
+  return newTree.join('');
 }
 
 // ================================================ //
