@@ -61,27 +61,27 @@ function isValidWalk(walk) {
 // Implement the range function: range([start], stop, [step])
 
 function range(start = 0, end, step = 1) {
-  if(start > end){
+  if (start > end) {
     return [];
   }
 
-  if(!start && !end){
+  if (!start && !end) {
     return [];
   }
 
-  if(start && !end && (step === 1 || !step)){
-    end = start;
-    start = 0;
+  if (start && !end && (step === 1 || !step)) {
+    end       = start;
+    start     = 0;
     let range = [];
-    for(let i = start; i < end; i++){
+    for (let i = start; i < end; i++) {
       range.push(i);
     }
     return range;
   }
 
-  if(step === 0){
+  if (step === 0) {
     let range = [];
-    for(let i = start; i < end; i++){
+    for (let i = start; i < end; i++) {
       range.push(start);
     }
     return range;
@@ -90,9 +90,9 @@ function range(start = 0, end, step = 1) {
 
   let range = [start];
 
-  function next(previousNum){
+  function next(previousNum) {
     let nextNum = previousNum + step;
-    if(nextNum < end){
+    if (nextNum < end) {
       range.push(nextNum);
       next(nextNum);
     } else {
@@ -105,3 +105,70 @@ function range(start = 0, end, step = 1) {
   return range;
 }
 
+// ================================================ //
+
+// https://www.codewars.com/kata/52755006cc238fcae70000ed
+// Create a function christmasTree(height) that returns a christmas tree of the correct height
+
+function christmasTree(height) {
+  if (height < 1) {
+    return '';
+  }
+
+  if (height < 2) {
+    return '*';
+  }
+
+  function getNthOdd(n) {
+    let oddsList = [];
+    for (let i = 0; i < 1000; i++) {
+      if (i % 2 === 1) {
+        oddsList.push(i);
+      }
+    }
+    return oddsList[n - 1];
+  }
+
+  function generateBranch(row) {
+    let branch = [];
+    for (let i = 0; i < getNthOdd(row); i++) {
+      branch.push('*');
+    }
+
+    return branch.join('');
+  }
+
+  function spacer(treeArray, height) {
+
+    for (let i = 0; i < treeArray.length; i++) {
+      let spacesNeedEachSide = height - (i + 1);
+      treeArray[i]           = treeArray[i].split('');
+
+      for (let k = 0; k < spacesNeedEachSide; k++) {
+        treeArray[i].unshift(' ');
+        treeArray[i].push(' ');
+      }
+    }
+    return treeArray;
+  }
+
+  let treeArr = [];
+  for (let i = 0; i < height; i++) {
+    treeArr.push(generateBranch(i + 1));
+  }
+
+  let newTree = spacer(treeArr, height);
+
+  for (let j = 0; j < newTree.length; j++) {
+    if (j !== newTree.length - 1) {
+      newTree[j] = newTree[j].concat('\n').join('');
+    } else {
+      newTree[j] = newTree[j].join('');
+    }
+  }
+
+  console.log(newTree.join(''));
+  return treeArr.join('');
+}
+
+// ================================================ //
