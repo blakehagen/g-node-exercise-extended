@@ -61,7 +61,6 @@ function isValidWalk(walk) {
 // Implement the range function: range([start], stop, [step])
 
 function range(start = 0, end, step = 1) {
-
   if (start > end) {
     return [];
   }
