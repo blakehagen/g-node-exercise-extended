@@ -21,10 +21,6 @@ function roundToFive(numbers) {
  Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It will never give you an empty array (that's not a walk, that's standing still!).
  */
 
-// Thoughts:
-// If .length !== 10 return false;
-// Need to have same number of opposites (if 2 'n' must be 2 's'; if 2 'e' must be 2 'w'
-
 function isValidWalk(walk) {
   if (walk.length !== 10) {
     return false;
@@ -156,3 +152,48 @@ function christmasTree(height) {
 }
 
 // ================================================ //
+
+// https://www.codewars.com/kata/point-in-polygon-1/javascript
+// Point in Polygon
+
+// ****************************** //
+// *** NOTE ***  I couldn't solve this all the way; I used this as my guide to help finish:
+// ==> ==> ==> https://www.ics.uci.edu/~eppstein/161/960307.html
+// ****************************** //
+
+// see how many times a line drawn straight down from a given point intersects the polygon.
+
+function pointInPoly(poly, point) {
+
+  let x = point[0];
+  let y = point[1];
+
+  let crossings = 0;
+
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+
+    // set (x,y) points for each line segment for all sides of polygon
+    let xi = poly[i][0];
+    let yi = poly[i][1];
+
+    let xj = poly[j][0];
+    let yj = poly[j][1];
+
+    // check to see if x is between x1 and x2 of each segment
+    if ((xi < x && x < xj) || (xi > x && x > xj)) {
+
+      // if x is between x1 and x2, find where it intersects the current segment(edge of polygon)
+      let t          = (x - xj) / (xi - xj);
+      let yIntersect = t * yi + (1 - t) * yj;
+
+      if (y === yIntersect) {
+        return;
+      } else if (y > yIntersect) {
+        crossings++;
+      }
+    }
+  }
+
+  // even # of crossings = point is OUTSIDE polygon; odd # of crossings = point is INSIDE polygon
+  return (crossings % 2 === 1);
+}
